@@ -165,7 +165,7 @@ func parseICalData(data []byte) ([]Event, error) {
 }
 
 func main() {
-	// 1️⃣ Récupérer les ressources depuis l'API Config
+	// Récupérer les ressources depuis l'API Config
 	apiConfigURL := "http://localhost:8080/resources" // Remplace par l'URL réelle
 	resources, err := getResourcesFromConfig(apiConfigURL)
 	if err != nil {
@@ -173,7 +173,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// 2️⃣ Construire dynamiquement l’URL de l’EDT
+	// Construire dynamiquement l’URL de l’EDT
 	edtURL, err := buildEDTURL(resources)
 	if err != nil {
 		fmt.Println("Erreur :", err)
@@ -181,21 +181,21 @@ func main() {
 	}
 	fmt.Println("URL EDT générée :", edtURL) // Debug
 
-	// 3️⃣ Récupérer l’emploi du temps
+	// Récupérer l’emploi du temps
 	rawData, err := getScheduleData(edtURL)
 	if err != nil {
 		fmt.Println("Erreur :", err)
 		os.Exit(1)
 	}
 
-	// 4️⃣ Parser les données ICAL en JSON
+	// Parser les données ICAL en JSON
 	events, err := parseICalData(rawData)
 	if err != nil {
 		fmt.Println("Erreur :", err)
 		os.Exit(1)
 	}
 
-	// 5️⃣ Afficher le JSON final
+	// Afficher le JSON final
 	jsonData, err := json.MarshalIndent(events, "", "  ")
 	if err != nil {
 		fmt.Println("Erreur d'encodage JSON :", err)
