@@ -64,7 +64,7 @@ func buildEDTURL(resources []Resource) (string, error) {
 	}
 
 	return fmt.Sprintf(
-		"https://edt.uca.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=%s&projectId=2&calType=ical&nbWeeks=1&displayConfigId=128",
+		"https://edt.uca.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=%s&projectId=2&calType=ical&nbWeeks=52&displayConfigId=128",
 		strings.Join(ucaIDs, ","),
 	), nil
 }
@@ -166,7 +166,7 @@ func parseICalData(data []byte) ([]Event, error) {
 
 func main() {
 	// Récupérer les ressources depuis l'API Config
-	apiConfigURL := "http://localhost:8080/resources" // Remplace par l'URL réelle
+	apiConfigURL := "http://localhost:8080/resources"
 	resources, err := getResourcesFromConfig(apiConfigURL)
 	if err != nil {
 		fmt.Println("Erreur :", err)
